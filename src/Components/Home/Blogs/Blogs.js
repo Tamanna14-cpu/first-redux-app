@@ -6,7 +6,7 @@ const Blogs = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('https://safe-island-53802.herokuapp.com/services')
+        fetch('https://rocky-castle-59670.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data));
     }, [])
@@ -14,7 +14,7 @@ const Blogs = () => {
 
     return (
         <Container>
-            <Row xs={1} md={3} className="g-5 mb-5 pb-5 container">
+            <Row xs={1} md={3} className="g-5 my-5 pb-5 container">
 
                 {
                     services.map((service) => <Col key={service._id}>
