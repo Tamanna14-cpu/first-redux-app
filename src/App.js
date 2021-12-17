@@ -14,6 +14,7 @@ import Register from './Components/Login/Register/Register';
 import Footer from './Components/Shared/Footer/Footer';
 import ReadingList from './Components/AllBlog/ReadingList/ReadingList';
 import FinishedList from './Components/AllBlog/FinishedList/FinishedList';
+import PrivateRoute from './Components/Login/PrivateRoute/PrivateRoute';
 
 
 
@@ -27,11 +28,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/blog" element={<AllBlog />} />
+            <Route path="/blog" element={<PrivateRoute><AllBlog /></PrivateRoute>} />
             <Route path="/signin" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/reading" element={<ReadingList />} />
             <Route path="/finished" element={<FinishedList />} />
+            <Route path="/reading" element={<ReadingList />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
           <Footer></Footer>

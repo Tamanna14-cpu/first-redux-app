@@ -30,10 +30,6 @@ const FinishedList = () => {
                                 <h4>All Blogs</h4>
                             </Link>
 
-                            <Link to="/reading">
-                                <h4>Reading List</h4>
-                            </Link>
-
                             <Link to="/finished">
                                 <h4>Finished List</h4>
                             </Link>

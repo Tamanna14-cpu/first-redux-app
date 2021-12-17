@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Button, Col, Container, Row, Offcanvas } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Row, Offcanvas, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 
 const ReadingList = () => {
 
@@ -8,6 +9,18 @@ const ReadingList = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [manageOrders, setManageOrders] = useState([]);
+
+
+    useEffect(() => {
+        fetch(`https://rocky-castle-59670.herokuapp.com/manageOrders`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setManageOrders(data)
+            });
+    }, []);
 
 
 
@@ -46,6 +59,36 @@ const ReadingList = () => {
 
                 <Col>
 
+
+
+                    {
+                        manageOrders.map((pd) => <Col key={pd._id} >
+
+                            <Card className=" my-5" >
+
+
+                                <Row md={2}>
+                                    <Col>
+                                        <Card.Img variant="top" className="img-fluid " src={pd.image} />
+                                    </Col>
+
+
+                                    <Col>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                {pd.title}
+                                            </Card.Title>
+
+                                            <Card.Text>
+                                                {pd.description}
+                                            </Card.Text>
+                                        </Card.Body>
+
+                                    </Col>
+
+                                </Row>
+                            </Card>
+                        </Col>)}
 
                 </Col>
             </Row>

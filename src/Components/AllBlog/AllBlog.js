@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Offcanvas, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,21 @@ const AddBlog = () => {
             .then(res => res.json())
             .then(data => setServices(data));
     }, [])
+
+
+
+    const addBlog = () => {
+
+        axios.post('https://rocky-castle-59670.herokuapp.com/manageOrders')
+            .then(res => {
+                console.log("amar data", res.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+    };
 
 
     return (
@@ -51,12 +67,13 @@ const AddBlog = () => {
                 </Col>
 
 
-                <Col>
+                <Col >
                     {
                         services.map((service) => <Col key={service._id}>
 
 
-                            <Card className="card-height my-5">
+
+                            <Card className=" my-5" >
 
                                 <Row md={2}>
                                     <Col>
@@ -75,16 +92,18 @@ const AddBlog = () => {
                                             </Card.Text>
                                         </Card.Body>
 
-                                        <Link to={`/placeOrder/${service._id}`}>
-                                            <button type="button" className="btn btn-outline-secondary service-btn">
-                                                Add to reading list
-                                            </button>
-                                        </Link>
+
+                                        <button onClick={() => addBlog(service)} type="submit" className="btn btn-outline-secondary ms-3">
+                                            Add to Reading List
+                                        </button>
+
 
                                     </Col>
 
                                 </Row>
                             </Card>
+
+
 
 
                         </Col>)
