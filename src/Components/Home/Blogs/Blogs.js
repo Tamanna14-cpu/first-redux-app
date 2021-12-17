@@ -8,12 +8,15 @@ const Blogs = () => {
     useEffect(() => {
         fetch('https://rocky-castle-59670.herokuapp.com/services')
             .then(res => res.json())
-            .then(data => setServices(data));
+            .then(data => setServices(data.slice(0, 6)));
     }, [])
 
 
     return (
         <Container>
+
+            <h1 className="mt-5 pt-5 text-center">FEATURED BLOG POSTS</h1>
+
             <Row xs={1} md={3} className="g-5 my-5 pb-5 container">
 
                 {
