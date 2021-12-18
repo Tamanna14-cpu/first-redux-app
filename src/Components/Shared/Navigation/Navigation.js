@@ -21,7 +21,6 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to="/blog">Your All Blog</Nav.Link>
-                            <Nav.Link >Review</Nav.Link>
 
                             {user?.email ?
                                 <Button onClick={logOut} variant="outline-dark" className="me-4 ">Logout</Button> :
