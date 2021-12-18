@@ -3,6 +3,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { fetchBooks } from '../../../redux/slices/blogSlice';
+import Fade from 'react-reveal/Fade';
 
 const Blogs = () => {
 
@@ -33,19 +34,19 @@ const Blogs = () => {
                 {
                     books.map((service) => <Col key={service._id}>
 
+                        <Fade bottom>
+                            <Card className="card-height service-card">
+                                <Card.Img variant="top" className="service-img" src={service.image} />
+                                <Card.Body>
 
-                        <Card className="card-height service-card">
-                            <Card.Img variant="top" className="service-img" src={service.image} />
-                            <Card.Body>
+                                    <Card.Title>
+                                        {service.title}
+                                    </Card.Title>
 
-                                <Card.Title>
-                                    {service.title}
-                                </Card.Title>
+                                </Card.Body>
 
-                            </Card.Body>
-
-                        </Card>
-
+                            </Card>
+                        </Fade>
 
                     </Col>)
                 }

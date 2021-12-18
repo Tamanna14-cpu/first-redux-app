@@ -15,6 +15,7 @@ import Footer from './Components/Shared/Footer/Footer';
 import ReadingList from './Components/AllBlog/ReadingList/ReadingList';
 import FinishedList from './Components/AllBlog/FinishedList/FinishedList';
 import PrivateRoute from './Components/Login/PrivateRoute/PrivateRoute';
+import ScrollToTop from './ScrollToTop/ScrollToTop';
 
 
 
@@ -24,18 +25,20 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
-          <Navigation></Navigation>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/blog" element={<PrivateRoute><AllBlog /></PrivateRoute>} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/finished" element={<FinishedList />} />
-            <Route path="/reading" element={<ReadingList />} />
-            <Route path="*" element={<Notfound />} />
-          </Routes>
-          <Footer></Footer>
+          <ScrollToTop>
+            <Navigation></Navigation>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/blog" element={<PrivateRoute><AllBlog /></PrivateRoute>} />
+              <Route path="/signin" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/finished" element={<FinishedList />} />
+              <Route path="/reading" element={<ReadingList />} />
+              <Route path="*" element={<Notfound />} />
+            </Routes>
+            <Footer></Footer>
+          </ScrollToTop>
         </AuthProvider>
       </BrowserRouter>
     </>

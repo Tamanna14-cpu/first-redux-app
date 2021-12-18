@@ -1,9 +1,11 @@
-// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Offcanvas, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToReadingList, fetchBooks } from '../../redux/slices/blogSlice';
+import Zoom from 'react-reveal/Zoom';
+
+
 
 const AddBlog = () => {
     const [show, setShow] = useState(false);
@@ -74,38 +76,38 @@ const AddBlog = () => {
                         books.map((service) => <Col key={service._id}>
 
 
+                            <Zoom>
+                                <Card className=" my-5" >
 
-                            <Card className=" my-5" >
-
-                                <Row md={2}>
-                                    <Col>
-                                        <Card.Img variant="top" className="img-fluid py-2 ps-3" src={service.image} />
-                                    </Col>
-
-
-                                    <Col>
-                                        <Card.Body>
-                                            <Card.Title>
-                                                {service.title}
-                                            </Card.Title>
-
-                                            <Card.Text>
-                                                {service.description}
-                                            </Card.Text>
-                                        </Card.Body>
+                                    <Row md={2}>
+                                        <Col>
+                                            <Card.Img variant="top" className="img-fluid py-2 ps-3" src={service.image} />
+                                        </Col>
 
 
-                                        <button onClick={() => dispatch(addToReadingList(service))} type="submit" className="btn btn-outline-secondary ms-3">
-                                            Add to Reading List
-                                        </button>
+                                        <Col>
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    {service.title}
+                                                </Card.Title>
+
+                                                <Card.Text>
+                                                    {service.description}
+                                                </Card.Text>
+                                            </Card.Body>
 
 
-                                    </Col>
+                                            <button onClick={() => dispatch(addToReadingList(service))} type="submit" className="btn btn-outline-secondary ms-3">
+                                                Add to Reading List
+                                            </button>
 
-                                </Row>
-                            </Card>
 
+                                        </Col>
 
+                                    </Row>
+                                </Card>
+
+                            </Zoom>
 
 
                         </Col>)
