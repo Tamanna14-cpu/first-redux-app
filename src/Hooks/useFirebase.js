@@ -28,7 +28,7 @@ const useFirebase = () => {
 
 
                 const destination = location?.state?.from || '/home';
-                history.replace(destination);
+                history(destination);
 
                 setAuthError('');
             }).catch((error) => {
@@ -60,7 +60,7 @@ const useFirebase = () => {
                     .catch((error) => {
                     });
 
-                history.replace('/home');
+                history('/home');
             })
             .catch((error) => {
                 setAuthError(error.message);
@@ -79,7 +79,7 @@ const useFirebase = () => {
             .then((userCredential) => {
 
                 const destination = location?.state?.from || '/home';
-                history.replace(destination);
+                history(destination);
                 setAuthError('');
             })
             .catch((error) => {

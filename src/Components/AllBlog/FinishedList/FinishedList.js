@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Row, Offcanvas } from 'react-bootstrap';
+import { Button, Col, Container, Row, Offcanvas, Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const FinishedList = () => {
@@ -9,7 +10,7 @@ const FinishedList = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
+    const finishedList = useSelector((state) => state.books.finishedList)
 
     return (
         <Container>
@@ -41,6 +42,34 @@ const FinishedList = () => {
 
 
                 <Col>
+                    {
+                        finishedList.map((pd) => <Col key={pd._id} >
+
+                            <Card className=" my-5" >
+
+
+                                <Row md={2}>
+                                    <Col>
+                                        <Card.Img variant="top" className="img-fluid py-2 ps-3" src={pd.image} />
+                                    </Col>
+
+
+                                    <Col>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                {pd.title}
+                                            </Card.Title>
+
+                                            <Card.Text>
+                                                {pd.description}
+                                            </Card.Text>
+                                        </Card.Body>
+
+                                    </Col>
+
+                                </Row>
+                            </Card>
+                        </Col>)}
 
 
                 </Col>

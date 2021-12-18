@@ -1,7 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Offcanvas, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addToReadingList, fetchBooks } from '../../redux/slices/blogSlice';
 
 const AddBlog = () => {
     const [show, setShow] = useState(false);
@@ -10,28 +12,28 @@ const AddBlog = () => {
     const handleShow = () => setShow(true);
 
 
-    const [services, setServices] = useState([]);
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        fetch('https://rocky-castle-59670.herokuapp.com/services')
-            .then(res => res.json())
-            .then(data => setServices(data));
+        dispatch(fetchBooks());
     }, [])
 
+    const books = useSelector((state) => state.books.discover)
 
 
-    const addBlog = () => {
 
-        axios.post('https://rocky-castle-59670.herokuapp.com/manageOrders')
-            .then(res => {
-                console.log("amar data", res.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    // const addBlog = () => {
+
+    //     axios.post('https://rocky-castle-59670.herokuapp.com/manageOrders')
+    //         .then(res => {
+    //             console.log("amar data", res.data);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
 
 
-    };
+    // };
 
 
     return (
@@ -69,7 +71,7 @@ const AddBlog = () => {
 
                 <Col >
                     {
-                        services.map((service) => <Col key={service._id}>
+                        books.map((service) => <Col key={service._id}>
 
 
 
@@ -93,7 +95,7 @@ const AddBlog = () => {
                                         </Card.Body>
 
 
-                                        <button onClick={() => addBlog(service)} type="submit" className="btn btn-outline-secondary ms-3">
+                                        <button onClick={() => dispatch(addToReadingList(service))} type="submit" className="btn btn-outline-secondary ms-3">
                                             Add to Reading List
                                         </button>
 
